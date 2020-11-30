@@ -171,7 +171,7 @@ const canvas = require('canvas');
     console.log(str);
 
     const cleanStr = str.replace(/\x1b\[\d+m/g, '');
-    fs.writeFileSync('README.md', `# ImageScript benchmark\n\n${cleanStr.replace(/\n/g, '  \n')}`);
+    fs.writeFileSync('README.md', `# ImageScript benchmark\n\n\`\`\`\n${cleanStr.replace(/\n/g, '  \n')}\n\`\`\``);
     fs.writeFileSync('results.json', JSON.stringify(results));
 
     const font = fs.readFileSync('C:\\Windows\\Fonts\\consola.ttf');
