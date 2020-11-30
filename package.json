@@ -1,0 +1,26 @@
+{
+  "name": "imagescript-bench",
+  "version": "1.0.0",
+  "description": "ImageScript benchmarks",
+  "main": "index.js",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "imagescript": "^1.0.9",
+    "jimp": "^0.16.1",
+    "nodemark": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matmen/ImageScript-Bench.git"
+  },
+  "author": "matmen",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/matmen/ImageScript-Bench/issues"
+  },
+  "homepage": "https://github.com/matmen/ImageScript-Bench#readme"
+}
