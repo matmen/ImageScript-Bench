@@ -1,6 +1,7 @@
 const benchmark = require('nodemark');
 const fs = require('fs');
-const binary = fs.readFileSync('../ImageScript/tests/targets/image.png');
+const binaryPNG = fs.readFileSync('../ImageScript/tests/targets/image.png');
+const binaryJPEG = fs.readFileSync('../ImageScript/tests/targets/external.jpg');
 
 const Jimp = require('jimp');
 const ImageScript = require('../ImageScript');
@@ -8,10 +9,10 @@ const canvas = require('canvas');
 
 (async () => {
     const decoded = {
-        ImageScript: await ImageScript.Image.decode(binary),
-        Jimp: await Jimp.read(binary),
+        ImageScript: await ImageScript.Image.decode(binaryPNG),
+        Jimp: await Jimp.read(binaryPNG),
         Canvas: await (async () => {
-            const image = await canvas.loadImage(binary);
+            const image = await canvas.loadImage(binaryPNG);
             const c = canvas.createCanvas(image.width, image.height);
             const ctx = c.getContext('2d');
             ctx.drawImage(image, 0, 0);
@@ -52,11 +53,21 @@ const canvas = require('canvas');
             Jimp: async () => new Jimp(1024, 1024),
             Canvas: async () => canvas.createCanvas(1024, 1024)
         },
-        decode: {
-            ImageScript: ImageScript.Image.decode.bind(ImageScript.Image, binary),
-            Jimp: Jimp.read.bind(Jimp, binary),
+        decode_png: {
+            ImageScript: ImageScript.Image.decode.bind(ImageScript.Image, binaryPNG),
+            Jimp: Jimp.read.bind(Jimp, binaryPNG),
             Canvas: async () => {
-                const image = await canvas.loadImage(binary);
+                const image = await canvas.loadImage(binaryPNG);
+                const c = canvas.createCanvas(image.width, image.height);
+                const ctx = c.getContext('2d');
+                ctx.drawImage(image, 0, 0);
+            }
+        },
+        decode_jpeg: {
+            ImageScript: ImageScript.Image.decode.bind(ImageScript.Image, binaryJPEG),
+            Jimp: Jimp.read.bind(Jimp, binaryJPEG),
+            Canvas: async () => {
+                const image = await canvas.loadImage(binaryJPEG);
                 const c = canvas.createCanvas(image.width, image.height);
                 const ctx = c.getContext('2d');
                 ctx.drawImage(image, 0, 0);
