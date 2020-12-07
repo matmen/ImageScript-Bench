@@ -73,14 +73,19 @@ const canvas = require('canvas');
                 ctx.drawImage(image, 0, 0);
             }
         },
-        encode: {
+        encode_png: {
             ImageScript: decoded.ImageScript.encode.bind(decoded.ImageScript),
             Jimp: decoded.Jimp.getBufferAsync.bind(decoded.Jimp, 'image/png'),
             Canvas: async () => decoded.Canvas.toBuffer()
         },
+        encode_jpeg: {
+            ImageScript: decoded.ImageScript.encodeJPEG.bind(decoded.ImageScript),
+            Jimp: decoded.Jimp.getBufferAsync.bind(decoded.Jimp, 'image/jpeg'),
+            Canvas: async () => decoded.Canvas.toBuffer('image/jpeg')
+        },
         composite: {
-            ImageScript: async () => decoded.ImageScript.clone().composite.bind(decoded.ImageScript, overlays.ImageScript),
-            Jimp: async () => decoded.Jimp.clone().composite.bind(decoded.Jimp, overlays.Jimp),
+            ImageScript: async () => decoded.ImageScript.clone().composite(overlays.ImageScript),
+            Jimp: async () => decoded.Jimp.clone().composite(overlays.Jimp, 0, 0),
             Canvas: async () => {
                 // recommended way of cloning a canvas..
                 const newCanvas = canvas.createCanvas(decoded.Canvas.width, decoded.Canvas.height);
