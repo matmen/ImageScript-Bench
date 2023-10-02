@@ -4,12 +4,11 @@
   "description": "ImageScript benchmarks",
   "main": "index.js",
   "dependencies": {
-    "canvas": "^2.6.1",
-    "imagescript": "^1.0.9",
-    "jimp": "^0.16.1",
+    "canvas": "^2.11.2",
+    "imagescript": "^1.2.16",
+    "jimp": "^0.16.13",
     "nodemark": "^0.3.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
